@@ -1,0 +1,24 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Init') {
+            steps {
+                script {
+                    if (fileExists('container')) {
+                        sh 'rm -rf container'
+                    }
+                    sh 'git clone https://github.com/clumumba/container.git'
+                }
+            }
+        }
+        stage('Build') {
+            steps {
+                script {
+                    sh 'chmod +x container/springboot/java/demo/mvnw' // Grant execute permissions
+                    sh 'cd container/springboot/java/demo && ./mvnw clean install'
+                }
+            }
+        }
+    }
+}
