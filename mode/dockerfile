@@ -1,0 +1,7 @@
+FROM openjdk:17-jdk
+WORKDIR /web
+
+COPY ./ /web/
+
+RUN ./mvnw install
+ENTRYPOINT [ "java", "-jar", "/web/target/mode-0.0.1-SNAPSHOT.jar"]
