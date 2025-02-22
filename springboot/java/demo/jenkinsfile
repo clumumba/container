@@ -4,12 +4,7 @@ pipeline {
     stages {
         stage('Init') {
             steps {
-                script {
-                    if (fileExists('container')) {
-                        sh 'rm -rf container'
-                    }
-                    sh 'git clone https://github.com/clumumba/container.git'
-                }
+              git branch: 'main', url: 'https://github.com/clumumba/container.git'
             }
         }
         stage('Build') {
